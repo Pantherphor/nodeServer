@@ -6,6 +6,8 @@ var http = require('http');
 var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
 
+var config = require('./config');
+
 // server shoul respond to all requests with a string
 var server = http.createServer(function(req, res)
 {
@@ -72,8 +74,8 @@ var server = http.createServer(function(req, res)
 });
 
 //start the server and have it listen on port 3000
-server.listen(3000, function(){
-  console.log("The server is listerning on port:3000");
+server.listen(config.port, function(){
+  console.log("The server is listerning on port:"+config.port+ " in "+config.envName+ " environment.");
 });
 
 // define the hanlders
