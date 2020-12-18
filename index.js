@@ -9,6 +9,13 @@ var StringDecoder = require('string_decoder').StringDecoder;
 
 var config = require('./config');
 var fs = require('fs');
+var _data = require('./lib/data');
+
+//TESTING
+//@TODO: detete this later
+_data.delete('test', 'newFile', function(err){
+  console.log('this was the error', err);
+})
 
 // instanciate http server
 var httpServer = http.createServer(function(req, res)
@@ -109,6 +116,11 @@ handlers.sample = function(data, callback){
   callback(406, {'name' : 'sample handler'});
 };
 
+// ping handler
+handlers.ping = function(data, callback){
+ callback(200);
+}
+
 // not found handler
 handlers.notFound = function(data, callback){
   callback(404);
@@ -116,5 +128,5 @@ handlers.notFound = function(data, callback){
 
 // define a request router
 var router = {
-  'sample' : handlers.sample
+  'ping' : handlers.ping
 };
